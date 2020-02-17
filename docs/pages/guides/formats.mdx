@@ -1,0 +1,28 @@
+import Ad from '_shared/Ad'
+import Code from '_shared/Code.tsx'
+import Example from '_shared/Example'
+import PageMeta from '_shared/PageMeta'
+import utilsInterfaceCode from '!raw-loader!@date-io/core/IUtils.d.ts';
+import * as FormatsExample from './Formats.example'
+
+<PageMeta title="Formats" />
+
+## Format customization
+
+For localization purposes, it may be needed to change display values in the pickers' modals,
+because the default formats cannot be idiomatic for some localizations. Utils can help you there.
+
+<Ad />
+
+It's possible to override any of the displayed date values by inheritance of utils passed to
+MuiPickersProvider.
+
+#### Patched French pickers
+You can use ES6 class syntax or override values with the help of `.prototype` Object property.
+
+<Example source={FormatsExample} />
+
+#### Utils interface
+*Note* TDate - date object passed from state (moment, native Date or Luxon`s DateTime)
+
+<Code language="ts" children={utilsInterfaceCode} />

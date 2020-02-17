@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "github": {
+    "silent": true
+  },
+  "build": {
+    "env": {
+      "IS_NOW": "true"
+    }
+  },
+  "builds": [{ "src": "docs/next.config.js", "use": "@now/next" }],
+  "routes": [
+    { "src": "/api/(?<name>[^/]+)$", "dest": "docs/api/props?component=$name" },
+    { "src": "/(.*)", "dest": "docs/$1" }
+  ]
+}

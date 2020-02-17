@@ -1,0 +1,34 @@
+import Ad from '_shared/Ad';
+import Example from '_shared/Example'
+import PageMeta from '_shared/PageMeta'
+import LinkedComponents from '_shared/LinkedComponents'
+
+import * as BasicDateTimePicker from './BasicDateTimePicker.example'
+import * as InlineDateTimePicker from './InlineDateTimePicker.example'
+import * as CustomDateTimePicker from './CustomDateTimePicker.example'
+
+<PageMeta component="Date & Time picker" />
+
+## Date & Time picker
+
+This component combines Material Design date & time selection components. It allows to select both date and time with the same control.
+
+<Ad />
+
+#### Basic usage
+
+<Example source={BasicDateTimePicker} />
+
+#### Inline mode
+
+<Example source={InlineDateTimePicker} />
+
+#### Customization
+
+Applied almost all customizations, that are available for date & time pickers
+
+<Example source={CustomDateTimePicker} />
+
+#### Components API
+
+<LinkedComponents components={['DateTimePicker', 'KeyboardDateTimePicker']} />
