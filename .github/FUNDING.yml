@@ -1,8 +1,15 @@
 # These are supported funding model platforms
 
 github: # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
+<<<<<<< HEAD
 patreon: dmtrKovalenko
 open_collective: # Replace with a single Open Collective username
 ko_fi: # Replace with a single Ko-fi username
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
+=======
+patreon: # Replace with a single Patreon username
+open_collective: material-ui
+ko_fi: # Replace with a single Ko-fi username
+tidelift: npm/@material-ui/core
+>>>>>>> old_b/master
 custom: # Replace with a single custom sponsorship URL

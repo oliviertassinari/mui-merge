@@ -1,0 +1,93 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import FormGroup from '../FormGroup';
+import useForkRef from '../utils/useForkRef';
+import useControlled from '../utils/useControlled';
+import RadioGroupContext from './RadioGroupContext';
+
+const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
+  const { actions, children, name, value: valueProp, onChange, ...other } = props;
+  const rootRef = React.useRef(null);
+
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: props.defaultValue,
+    name: 'RadioGroup',
+  });
+
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        let input = rootRef.current.querySelector('input:not(:disabled):checked');
+
+        if (!input) {
+          input = rootRef.current.querySelector('input:not(:disabled)');
+        }
+
+        if (input) {
+          input.focus();
+        }
+      },
+    }),
+    [],
+  );
+
+  const handleRef = useForkRef(ref, rootRef);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+
+    if (onChange) {
+      onChange(event, event.target.value);
+    }
+  };
+
+  return (
+    <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>
+      <FormGroup role="radiogroup" ref={handleRef} {...other}>
+        {children}
+      </FormGroup>
+    </RadioGroupContext.Provider>
+  );
+});
+
+RadioGroup.propTypes = {
+  /**
+   * @ignore
+   */
+  actions: PropTypes.shape({ current: PropTypes.object }),
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The default `input` element value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * Value of the selected radio button. The DOM API casts this to a string.
+   */
+  value: PropTypes.any,
+};
+
+export default RadioGroup;
